@@ -137,12 +137,14 @@ function same(x) {
     alert(x);
 }
 
-//searching google using getKeywords
+//running code starts there
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function
+(tabs) {
+    let url = tabs[0].url;
+    url = formBaseUrl(url);
+    document.getElementById("domain").innerHTML = url;
 
-
-//alert(isSiteReputable("juan.cu"));
-//alert(isSiteReputable("cnn.com"));
-//alert(getIndexOfExtension("https://www.aljazeera.com/search?q=jomama"));
-//alert(getExtension("https://www.aljazeera.com/search?q=jomama"));
-//alert(getDomain("https://www.aljazeera.com/search?q=jomama"));
-alert(searchGoogle("what is up"));
+    if(!isSiteReputable(url)) {
+        document.getElementById("action").innerHTML = "This site is untrustworthy. Please consider switching to a site below.";
+    }
+});

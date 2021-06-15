@@ -9,5 +9,5 @@
             "default_popup": "main.html"
     },
     "host_permissions": ["https://www.google.com/", "http://www.google.com/"],
-    "permissions": ["activeTab"]
+    "permissions": ["activeTab", "tabs"]
 }

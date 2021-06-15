@@ -1,12 +1,22 @@
-<<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
     <head>
         <meta charset="utf-8">
         <title>Repute Extension</title>
-        <h1>You are on a trustworthy site. All good!</h1>
     </head>
     <body>
-        <p>You are on a trustworthy site. All good!
+        <style>
+            .main {
+                text-align: center;
+                font-family: sans-serif;
+                color: black;
+                background-color: white;
+            }
+        </style>
+        <p class="main">Current site: <p id="domain">abc</p></p>
+        <hr>
+        <p id="action" class="main">This site is trustworthy. No further actions needed.</p>
+        <table id="sources" class="main"></table>
         <script src="main.js"></script>
     </body>
 </html>

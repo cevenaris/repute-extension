@@ -149,7 +149,7 @@ function unique(a) {
     });
 }
 
-function modifySearchUrls(newKeyword) {
+function modifySearchUrls(newKeyword, button) {
     document.getElementById("search1").innerHTML = `<a href="${SEARCH[0] + newKeyword}" target="_blank">Search for ${newKeyword}</a>`
     document.getElementById("search2").innerHTML = `<a href="${SEARCH[1] + newKeyword}" target="_blank">Search for ${newKeyword}</a>`
     document.getElementById("search3").innerHTML = `<a href="${SEARCH[2] + newKeyword}" target="_blank">Search for ${newKeyword}</a>`
@@ -173,6 +173,7 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function
     let keywords = getKeywordsFromUrl(fullUrl);
     keywords = unique(keywords);
     currKeyword = keywords[0];
+    let active;
     let outer = document.getElementById("keywords");
     if(keywords.length < 1 || keywords[0] == "") {
         let element = document.createElement("p");
@@ -187,6 +188,11 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function
             element.appendChild(node);
             element.addEventListener("click",  function() {
                 modifySearchUrls(temp);
+                if(active != null && active != undefined) {
+                    active.style.background = "white";
+                }
+                element.style.background = "black";
+                active = element;
             });
             outer.appendChild(element);
         }

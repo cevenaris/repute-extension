@@ -3,20 +3,84 @@
     <head>
         <meta charset="utf-8">
         <title>Repute Extension</title>
-    </head>
-    <body>
         <style>
             .main {
                 text-align: center;
                 font-family: sans-serif;
-                color: black;
+                font-size: 18px;
+                color: white;
+                background-color: gray;
+            }
+
+            .specifics {
+                text-align: center;
+                font-family: sans-serif;
+                font-size: 24px;
+                color: silver;
+                background-color: transparent;
+            }
+
+            .logos {
+                width: 100px;
+                height: 100px;
+            }
+
+            body {
+                width: 600px;
+                height: 800px;
+                background-color: teal;
+                border: 1px solid black;
+                text-align: center;
+            }
+
+            table, th, td {
+                border: 1px solid black;
+                padding: 1px;
+            }
+
+            button {
+                color: red;
                 background-color: white;
+                width: 100px;
+                height: 50px;
             }
         </style>
-        <p class="main">Current site: <p id="domain">abc</p></p>
-        <hr>
+    </head>
+    <body>
+        <p class="main">Current site: <p class="specifics" id="domain">Not found</p></p>
         <p id="action" class="main">This site is trustworthy. No further actions needed.</p>
-        <table id="sources" class="main"></table>
+        <hr>
+        <p class="main">Keywords: <div class="specifics" id="keywords"></div></p>
+        <hr>
+        <table id="sources" class="main" style="width: 100%;">
+            <p class="main" id="alternatives">Safe Alternatives</p>
+            <tr>
+                <th>Site image</th>
+                <th>Site name(Description)</th>
+                <th>Search page link</th>
+            </tr>
+            <tr>
+                <td>
+                    <img class="logos" src="https://app-usa-modeast-prod-a01239f-ecas.s3.amazonaws.com/Logo_USAGov.png" alt="usa.gov logo">
+                </td>
+                <td><p>USA dot gov(US government website)</p></td>
+                <td id="search1"></td>
+            </tr>
+            <tr>
+                <td>
+                    <img class="logos" src="https://res.cloudinary.com/spokenlayer/image/upload/ar_1:1,c_fill/c_scale,w_256,dpr_auto,f_auto,q_auto/d_SpokenLayer_Logo_Verticle_fb9a1b.png/cover_art/time-com.png" alt="time.com logo">
+                </td>
+                <td><p>Time dot com(Time news outlet site)</p></td>
+                <td id="search2"></td>
+            </tr>
+            <tr>
+                <td>
+                    <img class="logos" src="https://www.jstor.org/assets/global_20210604T1730/build/images/jstor-logo.png" alt="jstor.org logo">
+                </td>
+                <td><p>Jstor dot org(Jstor database website)</p></td>
+                <td id="search3"></td>
+            </tr>
+        </table>
         <script src="main.js"></script>
     </body>
 </html>

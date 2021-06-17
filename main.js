@@ -1,3 +1,9 @@
+const SAFE = ["usa.gov", "time.com", "jstor.org"];
+const SEARCH = ["https://search.usa.gov/search?affiliate=usagov&query=",
+                "https://time.com/search/?q=",
+                "https://www.jstor.org/action/doBasicSearch?Query="];
+let currKeyword = "";
+
 function test() {
     let a = confirm("Safe?");
     if(a) {
@@ -80,7 +86,7 @@ function getKeywords(postExtension) {
         console.log(curr);
     }
     words.push(curr);
-    alert(curr);
+    return words;
 }
 
 function getKeywordsFromUrl(url) {
@@ -93,8 +99,7 @@ function formBaseUrl(url) {
 }
 
 function isSiteReputable(baseUrl) {     //base url means domain and extension
-    const REPUTABLE_SITES = ["cnn.com", "usa.gov", "bbc.com", "jstor.org"];
-    return (REPUTABLE_SITES.indexOf(baseUrl) > -1);
+    return (SAFE.indexOf(baseUrl) > -1);
 }
 
 function makeGoogleSearchUrl(keyword) {
@@ -137,14 +142,53 @@ function same(x) {
     alert(x);
 }
 
+function unique(a) {
+    var seen = [];
+    return a.filter(function(item) {
+        return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+    });
+}
+
+function modifySearchUrls(newKeyword) {
+    document.getElementById("search1").innerHTML = `<a href="${SEARCH[0] + newKeyword}" target="_blank">Search for ${newKeyword}</a>`
+    document.getElementById("search2").innerHTML = `<a href="${SEARCH[1] + newKeyword}" target="_blank">Search for ${newKeyword}</a>`
+    document.getElementById("search3").innerHTML = `<a href="${SEARCH[2] + newKeyword}" target="_blank">Search for ${newKeyword}</a>`
+}
+
+
 //running code starts there
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function
 (tabs) {
-    let url = tabs[0].url;
-    url = formBaseUrl(url);
+    let fullUrl = tabs[0].url;
+    let url = formBaseUrl(fullUrl);
     document.getElementById("domain").innerHTML = url;
 
     if(!isSiteReputable(url)) {
-        document.getElementById("action").innerHTML = "This site is untrustworthy. Please consider switching to a site below.";
+        document.getElementById("action").innerHTML = "This site is untrustworthy. Please consider switching to a site below by clicking the keyword buttons.";
+    } else {
+        document.getElementById("alternatives").style.display = "none";
+        document.getElementById("sources").style.display = "none";
+    }
+
+    let keywords = getKeywordsFromUrl(fullUrl);
+    keywords = unique(keywords);
+    currKeyword = keywords[0];
+    let outer = document.getElementById("keywords");
+    if(keywords.length < 1 || keywords[0] == "") {
+        let element = document.createElement("p");
+        let node = document.createTextNode("No keywords found from url.");
+        element.appendChild(node);
+        outer.appendChild(element);
+    } else {
+        for(let i = 0; i < keywords.length; i++) {
+            let temp = keywords[i];
+            let element = document.createElement("button");
+            let node = document.createTextNode(temp);
+            element.appendChild(node);
+            element.addEventListener("click",  function() {
+                modifySearchUrls(temp);
+            });
+            outer.appendChild(element);
+        }
     }
 });

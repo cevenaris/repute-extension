@@ -1,11 +1,11 @@
 {
-    "name": "repute-extension",
-    "description": "See github page",
+    "name": "ReputeAid",
+    "description": "A web extension that helps users avoid irreputable sites. When they are on a domain that is not trustworthy, the extension offers a list of safe sites that have similar topics available.",
     "version": "1.0",
     "manifest_version": 3,
 
     "action": {
-            "default_icon": "repute_extension_logo.png",
+            "default_icon": "icon.png",
             "default_popup": "main.html"
     },
     "host_permissions": ["https://www.google.com/", "http://www.google.com/"],

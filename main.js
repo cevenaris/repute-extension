@@ -73,7 +73,8 @@ function getKeywords(postExtension) {
     const EQUALS = "=";
     const AND = "&";
     const DOT = "."
-    const DELIMS = [SLASH, SPACE, DASH, UNDERSCORE, QUESTION, EQUALS, AND, DOT];
+    const HASH = "#"
+    const DELIMS = [SLASH, SPACE, DASH, UNDERSCORE, QUESTION, EQUALS, AND, DOT, HASH];
 
     let curr = "";
     let words = [];

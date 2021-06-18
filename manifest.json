@@ -5,7 +5,7 @@
     "manifest_version": 3,
 
     "action": {
-            "default_icon": "icon.png",
+            "default_icon": "repute_extension_logo.png",
             "default_popup": "main.html"
     },
     "host_permissions": ["https://www.google.com/", "http://www.google.com/"],

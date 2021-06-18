@@ -71,7 +71,9 @@ function getKeywords(postExtension) {
     const UNDERSCORE = "_";
     const QUESTION = "?";
     const EQUALS = "=";
-    const DELIMS = [SLASH, SPACE, DASH, UNDERSCORE, QUESTION, EQUALS];
+    const AND = "&";
+    const DOT = "."
+    const DELIMS = [SLASH, SPACE, DASH, UNDERSCORE, QUESTION, EQUALS, AND, DOT];
 
     let curr = "";
     let words = [];
@@ -156,7 +158,7 @@ function modifySearchUrls(newKeyword, button) {
 }
 
 
-//running code starts there
+//running code starts here
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function
 (tabs) {
     let fullUrl = tabs[0].url;
@@ -189,7 +191,7 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function
             element.addEventListener("click",  function() {
                 modifySearchUrls(temp);
                 if(active != null && active != undefined) {
-                    active.style.background = "white";
+                    active.style.background = "#ECE0BF";
                 }
                 element.style.background = "black";
                 active = element;
